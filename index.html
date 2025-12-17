@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration Form</title>
+<style>
+/* === Keep your existing styles here === */
+/* (The full CSS from your previous file, unchanged, keeps the UI intact) */
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px;display:flex;justify-content:center;align-items:center;transition:background 1s ease}.form-container{background:white;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.2);padding:40px;max-width:500px;width:100%;position:relative;z-index:1}.form-container::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(135deg,#667eea,#764ba2,#f093fb,#f5576c,#4facfe,#00f2fe);background-size:300% 300%;border-radius:8px;z-index:-1;animation:borderGradient 15s ease infinite;opacity:.3}@keyframes borderGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}h2{color:#333;margin-bottom:30px;text-align:center;font-size:24px}.form-group{margin-bottom:20px}label{display:block;margin-bottom:6px;color:#555;font-weight:500;font-size:14px}input[type="text"],input[type="tel"],input[type="email"],input[type="date"],select{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:4px;font-size:14px;transition:border-color .3s,box-shadow .3s;font-family:inherit}input[type="date"]{position:relative}input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;padding:4px;margin:0 -8px 0 0}input[type="date"]::-webkit-outer-spin-button,input[type="date"]::-webkit-inner-spin-button{display:none}input[type="text"]:focus,input[type="tel"]:focus,input[type="email"]:focus,input[type="date"]:focus,select:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,.1)}.radio-group{display:flex;gap:20px;margin-bottom:20px}.radio-option{display:flex;align-items:center}input[type="radio"]{margin-right:8px;cursor:pointer}input[type="radio"]+label{margin-bottom:0;cursor:pointer;font-weight:normal}.checkbox-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}.checkbox-option{display:flex;align-items:center;padding:10px;border:1px solid #eee;border-radius:4px;transition:background-color .2s}.checkbox-option:hover{background-color:#f9f9f9}input[type="checkbox"]{margin-right:8px;cursor:pointer;width:18px;height:18px;accent-color:#667eea}input[type="checkbox"]+label{margin-bottom:0;cursor:pointer;font-weight:normal}.button-group{display:flex;gap:12px;margin-top:30px}button{flex:1;padding:12px;font-size:16px;border:none;border-radius:4px;cursor:pointer;font-weight:600;transition:all .3s ease;position:relative;overflow:hidden}button::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.3);border-radius:50%;transform:translate(-50%,-50%);transition:width .6s,height .6s}button:hover::before{width:300px;height:300px}button[type="submit"]{background-color:#4CAF50;color:white}button[type="submit"]:hover{background-color:#45a049;box-shadow:0 6px 16px rgba(76,175,80,.4);transform:translateY(-2px)}button[type="submit"]:active{transform:translateY(0);box-shadow:0 2px 8px rgba(76,175,80,.3)}button.cancel{background-color:#f44336;color:white}button.cancel:hover{background-color:#da190b;box-shadow:0 6px 16px rgba(244,67,54,.4);transform:translateY(-2px)}button.cancel:active{transform:translateY(0);box-shadow:0 2px 8px rgba(244,67,54,.3)}.modal{display:none;position:fixed;z-index:2000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);animation:fadeIn .3s ease}.modal-content{background:white;margin:auto;padding:40px;border-radius:12px;width:90%;max-width:400px;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 20px 60px rgba(0,0,0,.3);animation:slideUp .4s ease}.modal-icon{font-size:60px;margin-bottom:20px;animation:scaleIn .5s ease .2s backwards}.modal-title{font-size:24px;font-weight:600;color:#4CAF50;margin-bottom:10px}.modal-message{color:#666;font-size:14px;margin-bottom:20px;line-height:1.6}.modal-student-id{background:#f0f0f0;border-left:4px solid #4CAF50;padding:15px;border-radius:4px;margin-bottom:20px;text-align:left}.modal-student-id label{display:block;font-size:12px;color:#999;margin-bottom:5px;text-transform:uppercase;font-weight:600}.modal-student-id .id-value{font-size:20px;font-weight:700;color:#4CAF50;font-family:'Courier New',monospace}.modal-button{background:#4CAF50;color:white;border:none;padding:12px 30px;border-radius:4px;cursor:pointer;font-size:16px;font-weight:600;transition:all .3s ease}.modal-button:hover{background:#45a049;box-shadow:0 4px 12px rgba(76,175,80,.3)}.modal-button:active{transform:scale(.98)}
+</style>
+</head>
+<body>
+<div class="form-container">
+<h2>Student Registration</h2>
+<form id="registrationForm">
+<div class="form-group">
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" required>
+</div>
+
+<div class="form-group">
+<label for="dob">Date of Birth:</label>
+<input type="date" id="dob" name="dob" required max="2010-12-31" title="Please select a valid date of birth">
+<small style="color: #999; font-size: 12px; margin-top: 4px; display: block;">You must be at least 14 years old to register</small>
+</div>
+
+<div class="form-group">
+<label>Gender:</label>
+<div class="radio-group">
+<div class="radio-option">
+<input type="radio" id="male" name="gender" value="male" required>
+<label for="male">Male</label>
+</div>
+<div class="radio-option">
+<input type="radio" id="female" name="gender" value="female">
+<label for="female">Female</label>
+</div>
+<div class="radio-option">
+<input type="radio" id="other" name="gender" value="other">
+<label for="other">Other</label>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label for="address">Address:</label>
+<input type="text" id="address" name="address" required>
+</div>
+
+<div class="form-group">
+<label for="telephone">Telephone (Nigerian):</label>
+<div style="display: flex; gap: 10px;">
+<div style="flex: 0 0 auto; display: flex; align-items: center; padding: 10px 12px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; font-weight: 600; color: #333;">
++234
+</div>
+<input type="tel" id="telephone" name="telephone" placeholder="0812 345 6789" required title="Enter a valid Nigerian phone number">
+<button type="button" id="verifyPhoneBtn" style="flex: 0 0 auto; padding: 10px 16px; min-height: 44px;">Verify</button>
+</div>
+<small id="phoneError" style="color: #d32f2f; display: none; margin-top: 4px;">Please enter a valid 11-digit Nigerian phone number (08xx xxxxxxx or +234xxx xxxxxx)</small>
+<small id="phoneSuccess" style="color: #4CAF50; display: none; margin-top: 4px;">✓ Phone verified</small>
+</div>
+
+<div class="form-group" id="otpGroup" style="display: none;">
+<label for="otp">Verification Code:</label>
+<input type="text" id="otp" name="otp" placeholder="Enter 6-digit code" maxlength="6" pattern="[0-9]{6}">
+<small id="otpError" style="color: #d32f2f; display: none; margin-top: 4px;">Invalid code. Please try again.</small>
+</div>
+
+<div class="form-group">
+<label for="email">Email Address:</label>
+<input type="email" id="email" name="email" inputmode="email" placeholder="your@email.com" required>
+</div>
+
+<div class="form-group">
+<label>Courses:</label>
+<div class="checkbox-group">
+<div class="checkbox-option">
+<input type="checkbox" id="mathematics" name="courses" value="mathematics">
+<label for="mathematics">Mathematics</label>
+</div>
+<div class="checkbox-option">
+<input type="checkbox" id="physics" name="courses" value="physics">
+<label for="physics">Physics</label>
+</div>
+<div class="checkbox-option">
+<input type="checkbox" id="biology" name="courses" value="biology">
+<label for="biology">Biology</label>
+</div>
+<div class="checkbox-option">
+<input type="checkbox" id="chemistry" name="courses" value="chemistry">
+<label for="chemistry">Chemistry</label>
+</div>
+</div>
+<small id="coursesError" style="color: #d32f2f; display: none; margin-top: 4px;">Please select at least one course</small>
+</div>
+
+<div class="button-group">
+<button type="submit">Register</button>
+<button type="button" class="cancel">Cancel</button>
+</div>
+</form>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal">
+<div class="modal-content">
+<div class="modal-icon">✓</div>
+<h2 class="modal-title">Registration Successful!</h2>
+<p class="modal-message">Your student registration has been submitted successfully.</p>
+<div class="modal-student-id">
+<label>Student ID</label>
+<div class="id-value" id="studentIdDisplay">-</div>
+</div>
+<button class="modal-button" onclick="closeSuccessModal()">Back to Form</button>
+</div>
+</div>
+
+<script>
+const form = document.getElementById('registrationForm');
+const dobInput = document.getElementById('dob');
+const phoneInput = document.getElementById('telephone');
+const phoneError = document.getElementById('phoneError');
+const phoneSuccess = document.getElementById('phoneSuccess');
+const verifyPhoneBtn = document.getElementById('verifyPhoneBtn');
+const otpGroup = document.getElementById('otpGroup');
+const otpInput = document.getElementById('otp');
+const otpError = document.getElementById('otpError');
+const coursesError = document.getElementById('coursesError');
+const courseCheckboxes = document.querySelectorAll('input[name="courses"]');
+const cancelBtn = document.querySelector('.cancel');
+
+let phoneVerified = false;
+
+// Validate Nigerian phone number
+const validatePhoneNumber = (phone)=>{
+    const digits = phone.replace(/\D/g,'');
+    return /^0[789]\d{9}$/.test(digits)||/^[789]\d{9}$/.test(digits)||/^234[789]\d{9}$/.test(digits);
+};
+
+// Normalize phone number
+const normalizePhoneNumber = (phone)=>{
+    let digits = phone.replace(/\D/g,'');
+    if(digits.startsWith('0')) digits=digits.slice(1);
+    else if(digits.startsWith('234')) digits=digits.slice(3);
+    return digits;
+};
+
+// Courses validation
+const validateCourses=()=>Array.from(courseCheckboxes).some(cb=>cb.checked);
+const getSelectedCourses=()=>Array.from(courseCheckboxes).filter(cb=>cb.checked).map(cb=>cb.value);
+
+// Course validation on change
+courseCheckboxes.forEach(cb=>{
+    cb.addEventListener('change',()=>{if(validateCourses()) coursesError.style.display='none';});
+});
+
+// Verify phone button
+verifyPhoneBtn.addEventListener('click', async (e)=>{
+    e.preventDefault();
+    if(!validatePhoneNumber(phoneInput.value)){
+        phoneError.style.display='block';
+        return;
+    }
+    phoneError.style.display='none';
+    otpGroup.style.display='block';
+
+    const normalizedPhone = normalizePhoneNumber(phoneInput.value);
+    const phoneWithCountry = '+234'+normalizedPhone;
+
+    try{
+        verifyPhoneBtn.disabled=true;
+        verifyPhoneBtn.textContent='Sending Code...';
+
+        const response = await fetch('/.netlify/functions/send-otp',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({phoneNumber:phoneWithCountry,action:'send'})
+        });
+        const result = await response.json();
+        if(result.success){
+            otpInput.focus();
+            alert(`Verification code sent to ${phoneWithCountry}!\n(Expires in ${result.expiresIn})`);
+            verifyPhoneBtn.textContent='Code Sent';
+        } else throw new Error(result.error||'Failed to send OTP');
+    }catch(err){
+        console.error(err);
+        alert('Error sending verification code: '+err.message);
+        verifyPhoneBtn.disabled=false;
+        verifyPhoneBtn.textContent='Verify';
+    }
+});
+
+// Verify OTP
+otpInput.addEventListener('blur', async ()=>{
+    if(otpInput.value.length===6){
+        try{
+            const normalizedPhone = normalizePhoneNumber(phoneInput.value);
+            const phoneWithCountry = '+234'+normalizedPhone;
+
+            const response = await fetch('/.netlify/functions/send-otp',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({phoneNumber:phoneWithCountry,action:'verify',otp:otpInput.value})
+            });
+            const result = await response.json();
+            if(result.success){
+                phoneVerified=true;
+                phoneSuccess.style.display='block';
+                phoneSuccess.textContent='✓ Phone verified';
+                otpError.style.display='none';
+                otpInput.style.borderColor='#4CAF50';
+            } else {
+                phoneVerified=false;
+                otpError.style.display='block';
+                otpError.textContent=result.error+(result.attemptsRemaining?` (${result.attemptsRemaining} attempts left)`:'');
+                otpInput.style.borderColor='#d32f2f';
+            }
+        }catch(err){
+            console.error(err);
+            otpError.style.display='block';
+            otpError.textContent='Error verifying code';
+        }
+    }
+});
+otpInput.addEventListener('focus',()=>{otpError.style.display='none';otpInput.style.borderColor='#ddd'});
+
+// Age validation
+dobInput.addEventListener('change',()=>{
+    const birthDate=new Date(dobInput.value);
+    const today=new Date();
+    let age=today.getFullYear()-birthDate.getFullYear();
+    const monthDiff=today.getMonth()-birthDate.getMonth();
+    if(monthDiff<0||(monthDiff===0&&today.getDate()<birthDate.getDate())) age--;
+    if(age<14){alert('You must be at least 14 years old to register.');dobInput.value='';dobInput.focus();}
+});
+
+// Success modal
+const successModal=document.getElementById('successModal');
+const showSuccessModal=(studentId)=>{
+    document.getElementById('studentIdDisplay').textContent=studentId;
+    successModal.style.display='block';
+    document.body.style.overflow='hidden';
+};
+const closeSuccessModal=()=>{
+    successModal.style.display='none';
+    document.body.style.overflow='auto';
+    form.reset();
+    phoneVerified=false;
+    otpGroup.style.display='none';
+    phoneSuccess.style.display='none';
+    coursesError.style.display='none';
+    verifyPhoneBtn.disabled=false;
+    verifyPhoneBtn.textContent='Verify';
+};
+successModal.addEventListener('click',e=>{if(e.target===successModal) closeSuccessModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&successModal.style.display==='block') closeSuccessModal();});
+
+// Form submission
+form.addEventListener('submit',async (e)=>{
+    e.preventDefault();
+    if(!dobInput.value){alert('Please select your date of birth');dobInput.focus();return;}
+    if(!validatePhoneNumber(phoneInput.value)){alert('Please enter a valid Nigerian phone number');phoneInput.focus();phoneError.style.display='block';phoneInput.style.borderColor='#d32f2f';return;}
+    if(!phoneVerified){alert('Please verify your phone number first');otpInput.focus();return;}
+    if(!validateCourses()){alert('Please select at least one course');coursesError.style.display='block';return;}
+    const selectedGender=document.querySelector('input[name="gender"]:checked');
+    if(!selectedGender){alert('Please select a gender');return;}
+
+    const formData={
+        name:document.getElementById('name').value,
+        dob:dobInput.value,
+        gender:selectedGender.value,
+        address:document.getElementById('address').value,
+        telephone:'+234'+normalizePhoneNumber(phoneInput.value),
+        email:document.getElementById('email').value,
+        courses:getSelectedCourses()
+    };
+
+    try{
+        // Here you would submit formData to your backend / database
+        // For demo, just generate a student ID
+        const studentId='STU'+Date.now();
+        showSuccessModal(studentId);
+    }catch(err){
+        console.error(err);
+        alert('Error submitting registration: '+err.message);
+    }
+});
+
+// Cancel button
+cancelBtn.addEventListener('click',()=>form.reset());
+</script>
+</body>
+</html>
