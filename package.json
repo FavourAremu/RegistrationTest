@@ -1,0 +1,17 @@
+{
+  "name": "student-registration",
+  "version": "1.0.0",
+  "description": "Student Registration Form with Netlify Neon Database",
+  "type": "module",
+  "dependencies": {
+    "@netlify/neon": "^0.1.0",
+    "twilio": "^4.10.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "netlify build"
+  }
+}
